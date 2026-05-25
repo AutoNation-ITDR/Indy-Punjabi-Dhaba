@@ -3,301 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indy Punjabi Dhaba - Authentic Indian Cuisine in Indianapolis</title>
-    <meta name="description" content="Indy Punjabi Dhaba - Authentic Indian restaurant in Indianapolis. Order online from 10:00 AM to 9:40 PM.">
+    <title>Indy Punjabi Dhaba - Order Online</title>
+    <meta name="description" content="Order authentic Indian food online from Indy Punjabi Dhaba. Open 10:00 AM - 9:40 PM.">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
-        <nav class="navbar">
-            <div class="container">
-                <div class="nav-wrapper">
-                    <div class="logo">
-                        <h1>INDY PUNJABI DHABA</h1>
-                        <p class="tagline">Authentic Indian Cuisine</p>
-                    </div>
-                    <ul class="nav-menu" id="navMenu">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#menu">Menu</a></li>
-                        <li><a href="#gallery">Gallery</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="#order" class="btn-order">Order Online</a></li>
-                    </ul>
-                    <button class="hamburger" id="hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>INDY PUNJABI DHABA</h1>
+                    <p class="hours">Order Online • 10:00 AM - 9:40 PM</p>
                 </div>
+                <button class="cart-btn" id="cartBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
             </div>
-        </nav>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h2 class="hero-title">Welcome to Indy Punjabi Dhaba</h2>
-            <p class="hero-subtitle">Discover Authentic Punjabi Flavors in the Heart of Indianapolis</p>
-            <div class="hero-buttons">
-                <a href="#order" class="btn btn-primary">Order Now</a>
-                <a href="#menu" class="btn btn-secondary">View Menu</a>
-            </div>
-            <div class="hero-hours">
-                <p>🕐 Online Ordering Hours: 10:00 AM - 9:40 PM</p>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <!-- Sidebar with Categories -->
+                <aside class="sidebar">
+                    <h3>Menu</h3>
+                    <nav class="category-nav">
+                        <button class="category-link active" data-category="all">Most Popular</button>
+                        <button class="category-link" data-category="veggie-appetizers">Veggie Appetizers</button>
+                        <button class="category-link" data-category="nonveg-appetizers">Non-Veg Appetizers</button>
+                        <button class="category-link" data-category="biryani">Biryani</button>
+                        <button class="category-link" data-category="main-veg">Main Course Veg</button>
+                        <button class="category-link" data-category="main-nonveg">Main Course Non-Veg</button>
+                        <button class="category-link" data-category="bread">Bread</button>
+                        <button class="category-link" data-category="extras">Extras</button>
+                        <button class="category-link" data-category="sweets">Sweets</button>
+                        <button class="category-link" data-category="drinks">Drinks</button>
+                    </nav>
+                    
+                    <div class="location-info">
+                        <h4>Location</h4>
+                        <p>1551 W Thompson Rd<br>Indianapolis, IN 46217</p>
+                        <p class="phone">📞 (317) 785-1234</p>
+                    </div>
+                </aside>
+
+                <!-- Menu Items Grid -->
+                <section class="menu-section">
+                    <h2 class="section-title">Most Popular</h2>
+                    
+                    <div class="menu-grid" id="menuGrid">
+                        <!-- Menu items will be dynamically loaded here -->
+                    </div>
+                </section>
             </div>
         </div>
-    </section>
+    </main>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Story</h2>
-                <div class="divider"></div>
+    <!-- Item Modal -->
+    <div class="modal" id="itemModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-body">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-price" id="modalPrice"></p>
+                <p class="modal-description" id="modalDescription"></p>
+                
+                <div class="modal-options" id="modalOptions"></div>
+                
+                <div class="quantity-selector">
+                    <button class="qty-btn" id="qtyMinus">−</button>
+                    <input type="number" class="qty-input" id="qtyInput" value="1" min="1">
+                    <button class="qty-btn" id="qtyPlus">+</button>
+                </div>
+                
+                <button class="add-to-cart-btn" id="addToCartBtn">
+                    Add to order • <span id="itemTotal">$0.00</span>
+                </button>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Tradition & Passion</h3>
-                    <p>Indy Punjabi Dhaba brings the authentic culinary experience of Punjab to Indianapolis. A "dhaba" is a traditional roadside restaurant in North India, where travelers stop to enjoy home-style dishes prepared with love and authentic spices.</p>
-                    <p>Our mission is to serve traditional Punjabi dishes made with fresh ingredients and recipes passed down through generations. Every dish tells a story of tradition, family, and passion for Indian cuisine.</p>
-                    <div class="features">
-                        <div class="feature">
-                            <span class="icon">🌶️</span>
-                            <h4>Authentic Spices</h4>
-                            <p>Imported directly from India</p>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Order</h3>
+            <button class="cart-close" id="cartClose">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Subtotal</span>
+                <span id="cartSubtotal">$0.00</span>
+            </div>
+            <div class="cart-total">
+                <span>Tax (7%)</span>
+                <span id="cartTax">$0.00</span>
+            </div>
+            <div class="cart-total total">
+                <span>Total</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-overlay" id="checkoutOverlay"></div>
+        <div class="modal-content checkout-modal">
+            <button class="modal-close" id="checkoutClose">&times;</button>
+            <div class="modal-body">
+                <h2>Checkout</h2>
+                
+                <div class="checkout-section">
+                    <h3>Contact Information</h3>
+                    <input type="text" placeholder="Full Name" class="checkout-input" id="customerName">
+                    <input type="email" placeholder="Email" class="checkout-input" id="customerEmail">
+                    <input type="tel" placeholder="Phone Number" class="checkout-input" id="customerPhone">
+                </div>
+                
+                <div class="checkout-section">
+                    <h3>Delivery Address</h3>
+                    <input type="text" placeholder="Street Address" class="checkout-input" id="address">
+                    <div class="input-row">
+                        <input type="text" placeholder="City" class="checkout-input" id="city">
+                        <input type="text" placeholder="State" class="checkout-input" id="state">
+                        <input type="text" placeholder="ZIP" class="checkout-input" id="zip">
+                    </div>
+                </div>
+                
+                <div class="checkout-section">
+                    <h3>Payment Method</h3>
+                    <div class="payment-methods">
+                        <button class="payment-btn active" data-method="card">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                                <line x1="1" y1="10" x2="23" y2="10"></line>
+                            </svg>
+                            Credit Card
+                        </button>
+                        <button class="payment-btn" data-method="cash">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="1" x2="12" y2="23"></line>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
+                            Cash
+                        </button>
+                    </div>
+                    
+                    <div class="card-input-section" id="cardInputSection">
+                        <input type="text" placeholder="Card Number" class="checkout-input" id="cardNumber">
+                        <div class="input-row">
+                            <input type="text" placeholder="MM/YY" class="checkout-input" id="cardExpiry">
+                            <input type="text" placeholder="CVV" class="checkout-input" id="cardCvv">
                         </div>
-                        <div class="feature">
-                            <span class="icon">👨‍🍳</span>
-                            <h4>Expert Chefs</h4>
-                            <p>Traditional Punjabi recipes</p>
-                        </div>
-                        <div class="feature">
-                            <span class="icon">🥘</span>
-                            <h4>Fresh Dishes</h4>
-                            <p>Made to order</p>
+                        <div class="accepted-cards">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='25' viewBox='0 0 40 25'%3E%3Crect fill='%231434CB' width='40' height='25' rx='3'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='white' font-family='Arial' font-size='10' font-weight='bold'%3EVISA%3C/text%3E%3C/svg%3E" alt="Visa">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='25' viewBox='0 0 40 25'%3E%3Crect fill='%23EB001B' width='40' height='25' rx='3'/%3E%3Ccircle cx='15' cy='12.5' r='7' fill='%23EB001B'/%3E%3Ccircle cx='25' cy='12.5' r='7' fill='%23F79E1B'/%3E%3C/svg%3E" alt="Mastercard">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='25' viewBox='0 0 40 25'%3E%3Crect fill='%23016FD0' width='40' height='25' rx='3'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='white' font-family='Arial' font-size='8' font-weight='bold'%3EAMEX%3C/text%3E%3C/svg%3E" alt="Amex">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='25' viewBox='0 0 40 25'%3E%3Crect fill='%23FF6000' width='40' height='25' rx='3'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='white' font-family='Arial' font-size='7' font-weight='bold'%3EDISCOVER%3C/text%3E%3C/svg%3E" alt="Discover">
                         </div>
                     </div>
                 </div>
-                <div class="about-image">
-                    <div class="image-placeholder">
-                        <span>🍛</span>
+                
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div class="summary-line">
+                        <span>Subtotal</span>
+                        <span id="checkoutSubtotal">$0.00</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Tax</span>
+                        <span id="checkoutTax">$0.00</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Delivery Fee</span>
+                        <span id="deliveryFee">$3.99</span>
+                    </div>
+                    <div class="summary-line total">
+                        <span>Total</span>
+                        <span id="checkoutTotal">$0.00</span>
                     </div>
                 </div>
+                
+                <button class="place-order-btn" id="placeOrderBtn">Place Order</button>
             </div>
         </div>
-    </section>
-
-    <!-- Menu Section -->
-    <section id="menu" class="menu">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Menu</h2>
-                <div class="divider"></div>
-                <p>Discover our most beloved dishes</p>
-            </div>
-            <div class="menu-categories">
-                <button class="category-btn active" data-category="all">All</button>
-                <button class="category-btn" data-category="veggie-appetizers">Veggie Appetizers</button>
-                <button class="category-btn" data-category="nonveg-appetizers">Non-Veg Appetizers</button>
-                <button class="category-btn" data-category="biryani">Biryani</button>
-                <button class="category-btn" data-category="main-veg">Main Course Veg</button>
-                <button class="category-btn" data-category="main-nonveg">Main Course Non-Veg</button>
-                <button class="category-btn" data-category="bread">Bread</button>
-                <button class="category-btn" data-category="extras">Extras</button>
-                <button class="category-btn" data-category="sweets">Sweets</button>
-                <button class="category-btn" data-category="drinks">Drinks</button>
-            </div>
-            <div class="menu-grid">
-                <!-- Drinks -->
-                <div class="menu-item" data-category="drinks">
-                    <div class="menu-item-header">
-                        <h3>Salty Lassi</h3>
-                        <span class="price">$3.58</span>
-                    </div>
-                    <p>Traditional yogurt drink with salt and spices</p>
-                </div>
-                <div class="menu-item" data-category="drinks">
-                    <div class="menu-item-header">
-                        <h3>Sweet Lassi</h3>
-                        <span class="price">$3.58</span>
-                    </div>
-                    <p>Sweet yogurt drink</p>
-                </div>
-                <div class="menu-item" data-category="drinks">
-                    <div class="menu-item-header">
-                        <h3>Mango Lassi</h3>
-                        <span class="price">$4.78</span>
-                    </div>
-                    <p>Refreshing yogurt and mango drink</p>
-                    <span class="badge popular">Popular</span>
-                </div>
-                <div class="menu-item" data-category="drinks">
-                    <div class="menu-item-header">
-                        <h3>Masala Chai</h3>
-                        <span class="price">$2.38</span>
-                    </div>
-                    <p>Traditional Indian spiced tea</p>
-                </div>
-                <div class="menu-item" data-category="drinks">
-                    <div class="menu-item-header">
-                        <h3>Soda Can</h3>
-                        <span class="price">$1.18</span>
-                    </div>
-                    <p>Assorted soft drinks</p>
-                </div>
-                <div class="menu-item" data-category="drinks">
-                    <div class="menu-item-header">
-                        <h3>Water Bottle</h3>
-                        <span class="price">$1.18</span>
-                    </div>
-                    <p>Bottled water</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
-        <div class="container">
-            <div class="section-header">
-                <h2>Gallery</h2>
-                <div class="divider"></div>
-                <p>Our delicious dishes</p>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">🍛</div>
-                    <p>Butter Chicken</p>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">🥘</div>
-                    <p>Biryani</p>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">🫓</div>
-                    <p>Assorted Naan</p>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">🍢</div>
-                    <p>Tandoori Platter</p>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">🥟</div>
-                    <p>Samosa</p>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">🍮</div>
-                    <p>Indian Desserts</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Order Section -->
-    <section id="order" class="order-section">
-        <div class="container">
-            <div class="order-content">
-                <h2>Order Online</h2>
-                <p>Enjoy our dishes from the comfort of your home</p>
-                <div class="order-hours">
-                    <h3>Ordering Hours</h3>
-                    <p class="hours-time">10:00 AM - 9:40 PM</p>
-                    <p>Every Day</p>
-                </div>
-                <div class="order-buttons">
-                    <a href="tel:+13177851234" class="btn btn-primary">📞 Call to Order</a>
-                    <a href="#contact" class="btn btn-secondary">📍 View Location</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2>Contact Us</h2>
-                <div class="divider"></div>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="info-item">
-                        <h3>📍 Address</h3>
-                        <p>1551 W Thompson Rd</p>
-                        <p>Indianapolis, IN 46217</p>
-                        <p>United States</p>
-                    </div>
-                    <div class="info-item">
-                        <h3>🕐 Hours</h3>
-                        <p>Online Ordering:</p>
-                        <p><strong>10:00 AM - 9:40 PM</strong></p>
-                        <p>Every Day</p>
-                    </div>
-                    <div class="info-item">
-                        <h3>📞 Phone</h3>
-                        <p><a href="tel:+13177851234">(317) 785-1234</a></p>
-                    </div>
-                    <div class="info-item">
-                        <h3>✉️ Email</h3>
-                        <p><a href="mailto:info@indypunjabidhaba.com">info@indypunjabidhaba.com</a></p>
-                    </div>
-                </div>
-                <div class="map-container">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3070.8847537847!2d-86.19999492346193!3d39.68999009516832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x886b5a0c8c8c8c8d%3A0x1234567890abcdef!2s1551%20W%20Thompson%20Rd%2C%20Indianapolis%2C%20IN%2046217!5e0!3m2!1sen!2sus!4v1234567890123"
-                        width="100%" 
-                        height="400" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy">
-                    </iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>INDY PUNJABI DHABA</h3>
-                    <p>Authentic Indian cuisine in the heart of Indianapolis</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#menu">Menu</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Hours</h4>
-                    <p>Online Ordering:</p>
-                    <p><strong>10:00 AM - 9:40 PM</strong></p>
-                </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook">📘</a>
-                        <a href="#" aria-label="Instagram">📷</a>
-                        <a href="#" aria-label="Twitter">🐦</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Indy Punjabi Dhaba Inc. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>
